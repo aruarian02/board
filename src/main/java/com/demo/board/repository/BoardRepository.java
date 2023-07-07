@@ -1,7 +1,7 @@
 package com.demo.board.repository;
 
 import com.demo.board.entity.Board;
-import org.springframework.boot.autoconfigure.ldap.embedded.EmbeddedLdapProperties;
+import com.demo.board.repository.search.SearchBoardRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -11,7 +11,7 @@ import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
-public interface BoardRepository extends JpaRepository<Board, Long> {
+public interface BoardRepository extends JpaRepository<Board, Long>, SearchBoardRepository {
     // 한개의 로우(Object) 내에 Object[] 로 나온다.
     @Query("SELECT b, w FROM Board b LEFT JOIN b.writer w WHERE b.bno =:bno")
     Object getBoardWithWriter(@Param("bno") Long bno);

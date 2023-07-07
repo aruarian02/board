@@ -39,7 +39,13 @@ public class BoardServiceImpl implements BoardService {
 
         Function<Object[], BoardDTO> fn = (e -> entityToDto((Board)e[0], (Member) e[1], (Long) e[2]));
 
-        Page<Object[]> result = repository.getBoardWithReplyCount(
+//        Page<Object[]> result = repository.getBoardWithReplyCount(
+//                pageRequestDTO.getPageable(Sort.by("bno").descending())
+//        );
+
+        Page<Object[]> result = repository.searchPage(
+                pageRequestDTO.getType(),
+                pageRequestDTO.getKeyword(),
                 pageRequestDTO.getPageable(Sort.by("bno").descending())
         );
 

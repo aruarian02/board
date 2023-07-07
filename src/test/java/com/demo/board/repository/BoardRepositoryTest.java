@@ -1,7 +1,7 @@
 package com.demo.board.repository;
 
-import com.demo.board.entity.Board;
-import com.demo.board.entity.Member;
+import com.demo.board.entity.*;
+import com.querydsl.jpa.JPQLQuery;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -87,5 +87,20 @@ class BoardRepositoryTest {
         Object[] arr = (Object[]) result;
 
         System.out.println(Arrays.toString(arr));
+    }
+
+    @Test
+    public void testSearch1() {
+        repository.search1();
+    }
+
+    @Test
+    public void testSearchPage() {
+        Pageable pageable = PageRequest.of(0, 10,
+                Sort.by("bno").descending()
+                        .and(Sort.by("title").ascending())
+        );
+
+        Page<Object[]> result = repository.searchPage("t", "1", pageable);
     }
 }

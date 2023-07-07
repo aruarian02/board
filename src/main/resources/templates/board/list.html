@@ -15,7 +15,7 @@
             </span>
         </h1>
 
-        <form action="/guestbook/list" method="get" id="searchForm">
+        <form action="/board/list" method="get" id="searchForm">
             <div class="input-group">
                 <input type="hidden" name="page" value="1">
                 <div class="input-group-prepend">
@@ -38,7 +38,6 @@
 
             </div>
         </form>
-
 
         <table class="table table-striped">
             <thead>
@@ -106,9 +105,11 @@
           $('.btn-search').click((e) => {
             searchForm.submit()
           })
+
           $('.btn-clear').click((e) => {
             searchForm.empty().submit()
           })
+
         </script>
 
     </th:block>
